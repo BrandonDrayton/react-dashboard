@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Container } from '@mui/system';
+import ResponsiveDrawer from './components/AppBar';
+import BasicTable from './components/Table';
+import BasicCard from './components/Card';
+
 
 function App() {
+  let utcDate = new Date(Date.UTC())
+  let usDate = new Date(utcDate)
+  usDate.setHours(utcDate.getHours() + 4)
+  let sydneyDate = new Date(Date.UTC())
+  sydneyDate.setHours(utcDate.getHours() + 10)
+  let londonDate = new Date(Date.UTC())
+  londonDate.setHours(utcDate.getHours() + 1)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <ResponsiveDrawer />
+      <Container sx={{ display: 'flex' }}>
+        <BasicCard time={usDate} city="Atlanta" />
+        <BasicCard time={londonDate} city="London" />
+        <BasicCard time={sydneyDate} city="Sydney" />
+      </Container>
+      <Container>
+        <BasicTable />
+      </Container>
+    </Container>
+
   );
 }
 
